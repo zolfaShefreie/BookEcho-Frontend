@@ -6,11 +6,23 @@ class SignUp extends React.Component{
 
     constructor(){
         super();
+        this.URL = 'http://127.0.0.1:8000/account/signup/';
+        this.baseApi = 'https://60d1e3db5b017400178f4a44.mockapi.io/test';
         this.input_style = {
             backgroundColor: '#3b3636',
             color: 'antiquewhite'
         }
-
+        this.state = {
+            'password': '',
+            'username': '',
+            'lastname': '',
+            'firstname': '',
+            'password-repeat': '',
+            'email': '',
+            'user_type': 'normal',
+        }
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     render(){
@@ -23,7 +35,8 @@ class SignUp extends React.Component{
                             <div className="form-group row mr-2">
                                 <label htmlFor="firstname"
                                        className="col-form-label col-form-label-sm">FirstName</label>
-                                <input type="text" className="form-control" style={this.input_style} id="firstname" />
+                                <input type="text" className="form-control" style={this.input_style} id="firstname"
+                                       onChange={this.handleChange} required/>
                             </div>
 
                         </div>
@@ -31,47 +44,79 @@ class SignUp extends React.Component{
                             <div className="form-group row ml-2">
                                 <label htmlFor="lastname"
                                        className="col-form-label col-form-label-sm">LastName</label>
-                                <input type="text" className="form-control" style={this.input_style} id="lastname"/>
+                                <input type="text" className="form-control" style={this.input_style} id="lastname"
+                                       onChange={this.handleChange} required/>
                             </div>
                         </div>
                     </div>
                     <div className="form-group row m-2">
                         <label htmlFor="email" className="col-form-label col-form-label-sm">Email</label>
-                        <input type="text" className="form-control" id="email" style={this.input_style} placeholder="user@example.com"/>
+                        <input type="text" className="form-control" id="email" style={this.input_style}
+                               placeholder="user@example.com" onChange={this.handleChange} required/>
                     </div>
                     <div className="form-group row m-2">
                         <label htmlFor="username" className="col-form-label col-form-label-sm">Username</label>
-                        <input type="text" className="form-control" id="username" style={this.input_style}/>
+                        <input type="text" className="form-control" id="username" style={this.input_style}
+                               onChange={this.handleChange} required/>
                     </div>
                     <div className="form-group row m-2">
                         <label htmlFor="password" className="col-form-label col-form-label-sm">Password</label>
-                        <input type="password" className="form-control" id="password" style={this.input_style}/>
+                        <input type="password" className="form-control" id="password" style={this.input_style}
+                               onChange={this.handleChange} required/>
                     </div>
                     <div className="form-group row m-2">
                         <label htmlFor="password-repeat" className="col-form-label col-form-label-sm">Repeat Password</label>
-                        <input type="password" className="form-control" id="password-repeat" style={this.input_style}/>
+                        <input type="password" className="form-control" onChange={this.handleChange}
+                               id="password-repeat" style={this.input_style} required/>
                     </div>
-                    <div className="form-group row m-2">
 
-                        <div className="custom-control custom-radio mr-4">
-                            <input type="radio" id="normal" name="customRadioInline1"
-                                   className="custom-control-input"/>
-                            <label className="custom-control-label" htmlFor="noraml">Normal </label>
-                        </div>
-                        <div className="custom-control custom-radio">
-                            <input type="radio" id="producer" name="customRadioInline1"
-                                   className="custom-control-input"/>
-                            <label className="custom-control-label" htmlFor="producer">Podcast Producer</label>
-                        </div>
 
+                    <div className="custom-control custom-radio custom-control-inline mt-2 mb-2">
+                        <input type="radio" id="customRadioInline1" name="customRadioInline1"
+                               className="custom-control-input" defaultChecked onChange={this.handleChange}/>
+                            <label className="custom-control-label" htmlFor="customRadioInline1">Normal</label>
                     </div>
-                    <input type="submit" className="btn btn-dark m-2"/>
+                    <div className="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="customRadioInline2" name="customRadioInline1"
+                               className="custom-control-input" onChange={this.handleChange}/>
+                            <label className="custom-control-label" htmlFor="customRadioInline2">Podcast Producer</label>
+                    </div>
+                    <br/>
+                    <button className="btn btn-dark m-2" onClick={this.handleSubmit}>Submit</button>
                 </form>
             </div>
         );
     }
-    async submit(event){
+    async handleSubmit(event){
+        event.preventDefault();
+        window.alert('hi')
 
+        await axios.post(`${this.URL}`, {
+            username: this.state.username,
+            password: this.state.password,
+            first_name: this.state.firstname,
+            last_name: this.state.lastname,
+            email: this.state.email,
+            user_type: 'this.state.user_type'
+        }).then((response) => {
+            console.log(response.data);
+        }, (error) => {
+            console.log('error', Object.assign({}, error.response.data));
+        });
+
+    }
+
+    handleChange(event){
+        if (event.target.id === 'customRadioInline2' && event.target.value === 'on'){
+            this.setState({'user_type': 'podcast_producer'})
+        }else if(event.target.id === 'customRadioInline1' && event.target.value === 'on'){
+            this.setState({'user_type': 'normal'})
+        }
+        else {
+            const newState = {}
+            newState[event.target.id] = event.target.value
+            this.setState(newState);
+        }
     }
 }
 
