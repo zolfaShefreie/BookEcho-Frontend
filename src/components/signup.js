@@ -7,7 +7,6 @@ class SignUp extends React.Component{
     constructor(){
         super();
         this.URL = 'http://127.0.0.1:8000/account/signup/';
-        this.baseApi = 'https://60d1e3db5b017400178f4a44.mockapi.io/test';
         this.input_style = {
             backgroundColor: '#3b3636',
             color: 'antiquewhite'
