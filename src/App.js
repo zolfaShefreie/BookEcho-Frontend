@@ -1,15 +1,17 @@
-import logo from './logo.svg';
 import './App.css';
-import Signup from './components/signup.js'
-import Login from "./components/login";
 import Routes from "./components/routers"
+import Navbar from "./components/navbar"
+import {BrowserRouter } from 'react-router-dom';
 
 function App() {
-  return (
-      <div className="App">
-        <Routes/>
-      </div>
-  );
+    return (
+        <div className="App">
+            <BrowserRouter>
+                <Navbar/>
+                <Routes/>
+            </BrowserRouter>
+        </div>
+    );
 }
 
 export default App;
