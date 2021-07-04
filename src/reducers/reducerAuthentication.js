@@ -13,13 +13,15 @@ if (localStorage.getItem('token')){
 }
 
 
-const reducer = (state=initialState, action)=>{
+const reducer = (state=initialState, action=null)=>{
     const newState = {...state}
-    if (action.type === 'login'){
-        newState.is_login = true
-    }
-    else if (action.type === 'logout'){
-        newState.is_login = false
+    if (action){
+        if (action.type === 'login'){
+            newState.is_login = true
+        }
+        else if (action.type === 'logout'){
+            newState.is_login = false
+        }
     }
     return newState
 }
