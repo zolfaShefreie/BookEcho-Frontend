@@ -75,6 +75,8 @@ class Login extends React.Component{
             username: this.state.username,
             password: this.state.password
         }).then((response) => {
+            localStorage.setItem('user_id', response.data.user['pk']);
+            localStorage.setItem('token', response.data.token);
             console.log(response.data);
         }, (error) => {
             console.log('error', Object.assign({}, error.response.data));

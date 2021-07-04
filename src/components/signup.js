@@ -145,6 +145,8 @@ class SignUp extends React.Component{
             email: this.state.email,
             user_type: this.state.user_type
         }).then((response) => {
+            localStorage.setItem('user_id', response.data.id);
+            localStorage.setItem('token', response.data.token);
             console.log(response.data);
         }, (error) => {
             console.log('error', Object.assign({}, error.response.data));
