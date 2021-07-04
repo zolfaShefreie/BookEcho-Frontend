@@ -4,6 +4,7 @@ import Login from './login';
 import SignUp from './signup';
 import Info from "./producerInfo";
 import Producer from "./producerList";
+import RequestCreate from "./request_create";
 
 
 export default function Routes() {
@@ -14,6 +15,7 @@ export default function Routes() {
             <Route exact path="/signup" render={() => <SignUp/>}/>
             <Route exact path="/producer/info" render={() => <Info/>}/>
             <Route exact path="/producers" render={() => <Producer/>}/>
+            <Route exact path="/apply-request/" render={() => <RequestCreate/>}/>
         </Switch>
     );
 }
