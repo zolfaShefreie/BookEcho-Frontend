@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from "axios";
 import {Link} from "react-router-dom";
+import {connect} from "react-redux";
 
 class SignUp extends React.Component{
 
@@ -149,6 +150,7 @@ class SignUp extends React.Component{
             localStorage.setItem('user_id', response.data.id);
             localStorage.setItem('token', response.data.token);
             console.log(response.data);
+            this.props.Login()
         }, (error) => {
             console.log('error', Object.assign({}, error.response.data));
             this.setState({errors: error.response.data})
@@ -175,4 +177,16 @@ class SignUp extends React.Component{
     }
 }
 
-export default SignUp;
+const mapStateToProps = state => {
+    return {
+        is_login: state.is_login
+    }
+}
+
+const mapDispatchToProps = dispatch =>{
+    return {
+        Login: () => dispatch({type: 'login'})
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

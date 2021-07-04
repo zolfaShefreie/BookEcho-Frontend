@@ -1,12 +1,13 @@
 import React from 'react';
 import axios from "axios";
 import {Link} from "react-router-dom";
+import {connect} from "react-redux";
 
 
 class Login extends React.Component{
 
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.URL = 'http://127.0.0.1:8000/account/login/';
         this.input_style = {
             backgroundColor: '#3b3636',
@@ -78,6 +79,7 @@ class Login extends React.Component{
             localStorage.setItem('user_id', response.data.user['pk']);
             localStorage.setItem('token', response.data.token);
             console.log(response.data);
+            this.props.Login()
         }, (error) => {
             console.log('error', Object.assign({}, error.response.data));
             this.setState({errors: error.response.data})
@@ -92,4 +94,18 @@ class Login extends React.Component{
     }
 }
 
-export default Login;
+const mapStateToProps = state => {
+    console.log(state.is_login)
+    return {
+        is_login: state.is_login
+    }
+}
+
+const mapDispatchToProps = dispatch =>{
+    console.log()
+    return {
+        Login: () => dispatch({type: 'login'})
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
