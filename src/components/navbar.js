@@ -53,7 +53,8 @@ class Navbar extends React.Component{
     }
 
     async handleLogout(event){
-        await axios.post(`${this.URL}`, {}).then((response) => {
+        await axios.post(`${this.URL}`, {},
+            {headers: {Authorization: `JWT ${localStorage.getItem('token')}`}}).then((response) => {
             localStorage.removeItem('user_id');
             localStorage.removeItem('token');
             this.props.Logout()
