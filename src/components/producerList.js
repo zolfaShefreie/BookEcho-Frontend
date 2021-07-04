@@ -32,10 +32,9 @@ class Producer extends React.Component{
                 <input type="text" placeholder="Search" className="form-control" onChange={this.handleChange}/>
                 {
                     (!this.state.loading) &&
-                    <ul className="list-group">
+                    <ul className="card-group">
                         {this.state.items.map((item, index) => {
-                            return <ProducerCart item={item}
-                                                 key={item.id}/>
+                            return <ProducerCart item={item} key={item.id}/>
                         })}
                     </ul>
                 }
@@ -54,7 +53,9 @@ class Producer extends React.Component{
     async getList(){
         const response = await axios.get(`${this.URL}`, {params: {search: this.state.term},
             headers: {Authorization: `JWT ${localStorage.getItem('token')}`}});
+        // await this.setState({items: response.data.results, loading: false})
         setTimeout(() => {this.setState({items: response.data.results, loading: false})}, 1000);
+
     }
 }
 
