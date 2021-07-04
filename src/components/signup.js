@@ -136,6 +136,7 @@ class SignUp extends React.Component{
     }
     async handleSubmit(event){
         event.preventDefault();
+        await this.setState({errors: {}})
 
         await axios.post(`${this.URL}`, {
             username: this.state.username,
