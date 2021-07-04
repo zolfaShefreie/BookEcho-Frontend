@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {createStore} from 'redux';
 import './index.css';
+import './Card.css'
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import reducer from './reducers/reducerAuthentication'
