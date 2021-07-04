@@ -1,8 +1,10 @@
 import React from 'react';
 import axios from "axios";
+import {Link} from "react-router-dom";
 
 
 class Login extends React.Component{
+
     constructor(){
         super();
         this.URL = 'http://127.0.0.1:8000/account/login/';
@@ -61,11 +63,12 @@ class Login extends React.Component{
                     <br/>
                     <button className="btn btn-dark m-2" onClick={this.handleSubmit}>Login</button>
                 </form>
+                <Link to="/signup/" style={{fontWeight: 'normal'}}>Create Account?</Link>
             </div>
         )
     }
 
-        async handleSubmit(event){
+    async handleSubmit(event){
         event.preventDefault();
 
         await axios.post(`${this.URL}`, {
