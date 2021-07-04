@@ -69,7 +69,7 @@ class Info extends React.Component{
         await this.setState({errors: {}})
         await axios.post(`${this.URL}`, {
             voice_sample: this.state.voice_sample
-        }, {headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}}).then((response) => {
+        }, {headers: {Authorization: `JWT ${localStorage.getItem('token')}`}}).then((response) => {
             console.log(response.data);
         }, (error) => {
             console.log('error', Object.assign({}, error.response.data));

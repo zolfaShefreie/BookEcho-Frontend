@@ -32,7 +32,7 @@ class Navbar extends React.Component{
                     {
                         this.props.is_login &&
                         <li className="nav-item">
-                            <Link className="nav-link" to="/login/" style={{color: 'antiquewhite'}}>Producers</Link>
+                            <Link className="nav-link" to="/producers/" style={{color: 'antiquewhite'}}>Producers</Link>
                         </li>
                     }
                 </ul>
