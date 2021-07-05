@@ -48,7 +48,7 @@ class Profile extends React.Component{
                     <div className="col-auto">
                         <div className="row-auto">
                             <ReactRoundedImage
-                                image={this.state.user.avatar ? this.props.avatar: DefaultImg}
+                                image={this.state.user.avatar ? this.state.user.avatar: DefaultImg}
                                 roundedColor="#343a40"
                                 roundedSize="0"
                                 imageWidth="200"
@@ -71,7 +71,8 @@ class Profile extends React.Component{
                             {/*}*/}
                         </div>
                         <div className="row-auto mt-4">
-                            <button className="btn btn-dark">Update</button>
+                            <button className="btn btn-dark" onClick={()=>{window.location.href="/profile/update/"}}>
+                                Update</button>
                         </div>
                     </div>
                     <div className="col-auto ml-4 mt-4">

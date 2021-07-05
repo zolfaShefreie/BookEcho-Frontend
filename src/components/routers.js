@@ -8,6 +8,7 @@ import RequestCreate from "./request_create";
 import Profile from "./profile";
 import Podcast from "./addPodcast";
 import SetDeadline from "./setDeadline";
+import UpdateProfile from "./updateProfile";
 
 
 export default function Routes() {
@@ -22,6 +23,7 @@ export default function Routes() {
             <Route exact path="/profile/" render={() => <Profile/>}/>
             <Route exact path="/add-change-podcast/" render={() => <Podcast/>}/>
             <Route exact path="/set-deadline/" render={() => <SetDeadline/>}/>
+            <Route exact path="/profile/update/" render={() => <UpdateProfile/>}/>
         </Switch>
     );
 }
