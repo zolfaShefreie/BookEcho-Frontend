@@ -33,7 +33,7 @@ class Profile extends React.Component{
         const url = this.state.user.user_type === "normal"? this.ApplicantListURL: this.ProducerListURL
         const response_list = await axios.get( url, {
             headers: {Authorization: `JWT ${localStorage.getItem('token')}`}});
-        setTimeout(() => {this.setState({items: response_list.data.results, loading: false})}, 1000);
+        setTimeout(() => {this.setState({items: response_list.data.results, loading: false})}, 800);
         console.log(response_list.data.results)
     }
 

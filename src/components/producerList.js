@@ -57,7 +57,7 @@ class Producer extends React.Component{
         const response = await axios.get(`${this.URL}`, {params: {search: this.state.term},
             headers: {Authorization: `JWT ${localStorage.getItem('token')}`}});
         // await this.setState({items: response.data.results, loading: false})
-        setTimeout(() => {this.setState({items: response.data.results, loading: false})}, 1000);
+        setTimeout(() => {this.setState({items: response.data.results, loading: false})}, 800);
 
     }
 }

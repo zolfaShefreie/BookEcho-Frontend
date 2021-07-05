@@ -124,7 +124,8 @@ class RequestCart extends React.Component{
 
     handleAccept(event){
         if (localStorage.getItem('user_type')==='podcast_producer' && this.props.item.status==="pending"){
-
+            localStorage.setItem('req_id', this.props.item.id);
+            window.location.href = '/set-deadline/';
         }
     }
 
@@ -146,8 +147,7 @@ class RequestCart extends React.Component{
     }
 
     async handleDelete(event){
-        if (localStorage.getItem('user_type')==='normal' && this.props.item.status==="pending")
-        {
+        if (localStorage.getItem('user_type')==='normal' && this.props.item.status==="pending") {
             const response = await axios.delete(`${this.baseURL}${this.props.item.id}/`,
                 {headers: {Authorization: `JWT ${localStorage.getItem('token')}`}});
             window.location.href = '/profile/'
