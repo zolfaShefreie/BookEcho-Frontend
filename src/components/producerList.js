@@ -34,7 +34,7 @@ class Producer extends React.Component{
                 <input type="text" placeholder="Search" className="form-control" onChange={this.handleChange}/>
                 {
                     (!this.state.loading) &&
-                    <ul className="card-group">
+                    <ul className="">
                         {this.state.items.map((item, index) => {
                             return <ProducerCart item={item} key={item.id} />
                         })}

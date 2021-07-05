@@ -48,7 +48,7 @@ body{
   -moz-transform: translateX(-50%) translateY(-50%);
   -webkit-transform: translateX(-50%) translateY(-50%);
   transform: translateX(-50%) translateY(-50%);
-  background-color: #8d4646;
+  background-color: #5b544e;
   background-image: url("images/box_background.jpg");
   background-size: cover;
   background-position: center;
@@ -58,4 +58,8 @@ body{
   box-shadow: 3px 3px #222121, -.7em 0 .5em #222121;
   color: #3b3636;
   font-weight: bold;
+}
+
+.cart_box{
+  background-image: url("images/box_background.jpg");
 }

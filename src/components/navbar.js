@@ -40,7 +40,7 @@ class Navbar extends React.Component{
                     this.props.is_login &&
                     <ul className="nav justify-content-end">
                         <li className="nav-item">
-                            <Link className="nav-link" to="/signup/" style={{color: 'antiquewhite'}}>Profile</Link>
+                            <Link className="nav-link" to="/profile/" style={{color: 'antiquewhite'}}>Profile</Link>
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link" to="#" style={{color: 'antiquewhite'}} onClick={this.handleLogout}>Logout</Link>

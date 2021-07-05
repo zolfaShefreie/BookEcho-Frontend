@@ -22,7 +22,7 @@ class ProducerCart extends React.Component{
                     imageHeight="120"
                 />
                 <div className="card-body ml-4">
-                    <h5 className="card-text">{this.props.item.last_name.concat(" ", this.props.item.first_name)}</h5>
+                    <h5 className="card-text">{this.props.item.first_name.concat(" ", this.props.item.last_name)}</h5>
                     <h5 className="card-text">{"@".concat(this.props.item.username)}</h5>
                     <ReactAudioPlayer
                         src={this.props.item.info.voice_sample}
