@@ -6,7 +6,7 @@ import axios from "axios";
 
 
 
-class RequestCart extends React.Component{
+class RequestCard extends React.Component{
     constructor(props){
         super(props)
         this.baseURL = "http://127.0.0.1:8000/request_management/request/"
@@ -178,4 +178,4 @@ class RequestCart extends React.Component{
 
 }
 
-export default RequestCart;
+export default RequestCard;

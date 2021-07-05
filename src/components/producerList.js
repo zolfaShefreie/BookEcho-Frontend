@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from "axios";
 import {Link, Redirect} from "react-router-dom";
-import ProducerCart from "./producerCart";
+import ProducerCard from "./producerCard";
 import LoadingGif from "../images/loading.gif"
 import {connect} from "react-redux";
 import { Modal, Button } from "react-bootstrap";
@@ -36,7 +36,7 @@ class Producer extends React.Component{
                     (!this.state.loading) &&
                     <ul className="">
                         {this.state.items.map((item, index) => {
-                            return <ProducerCart item={item} key={item.id} />
+                            return <ProducerCard item={item} key={item.id} />
                         })}
                     </ul>
                 }

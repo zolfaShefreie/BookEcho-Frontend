@@ -5,7 +5,7 @@ import React from 'react';
 import DefaultImg from "../images/default-avatar.jpg"
 
 
-class ProducerCart extends React.Component{
+class ProducerCard extends React.Component{
     constructor(props){
         super(props)
         this.handleClick = this.handleClick.bind(this);
@@ -44,4 +44,4 @@ class ProducerCart extends React.Component{
 
 }
 
-export default ProducerCart;
+export default ProducerCard;

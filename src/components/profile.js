@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import DefaultImg from "../images/default-avatar.jpg"
 import ReactRoundedImage from "react-rounded-image";
 import ReactAudioPlayer from 'react-audio-player';
-import RequestCart from "./request_cart";
+import RequestCard from "./request_card";
 import LoadingGif from "../images/loading.gif";
 
 
@@ -82,7 +82,7 @@ class Profile extends React.Component{
                             (!this.state.loading) &&
                             <ul className="">
                                 {this.state.items.map((item, index) => {
-                                    return <RequestCart item={item} key={item.id} />
+                                    return <RequestCard item={item} key={item.id} />
                                 })}
                             </ul>
                         }
