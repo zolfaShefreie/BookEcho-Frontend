@@ -23,7 +23,7 @@ class SetDeadline extends React.Component{
             'deadline': null,
         }
         this.handleChange = this.handleChange.bind(this);
-        // this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     render() {

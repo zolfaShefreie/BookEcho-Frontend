@@ -14,7 +14,7 @@ class Profile extends React.Component{
         super(props);
         this.URL = "http://127.0.0.1:8000/account/profile/"
         this.ApplicantListURL = "http://127.0.0.1:8000/request_management/applicant/requests/"
-        this.ProducerListURL = "http://127.0.0.1:8000/request_management/applicant/requests/"
+        this.ProducerListURL = "http://127.0.0.1:8000/request_management/produser/requests/"
         this.state = {
             user: {},
             loading: true,
@@ -60,15 +60,15 @@ class Profile extends React.Component{
                                 <h5 className="col" style={this.text_style}>{this.state.user.last_name}</h5>
                             </div>
                             <h5 className="row-auto ml-2 mt-4" style={this.text_style}>{"@".concat(this.state.user.username)}</h5>
-                            {
-                                (this.state.user.user_type === "podcast_producer" && this.state.user.info) &&
-                                <ReactAudioPlayer
-                                    src={this.state.user.info.voice_sample}
-                                    controls
-                                    className="row-auto"
-                                    style={{width:'80%', height: "40%"}}
-                                />
-                            }
+                            {/*{*/}
+                            {/*    (this.state.user.user_type === "podcast_producer") &&*/}
+                            {/*    <ReactAudioPlayer*/}
+                            {/*        src={this.state.user.info.voice_sample}*/}
+                            {/*        controls*/}
+                            {/*        className="row-auto"*/}
+                            {/*        style={{width:'80%', height: "40%"}}*/}
+                            {/*    />*/}
+                            {/*}*/}
                         </div>
                         <div className="row-auto mt-4">
                             <button className="btn btn-dark">Update</button>

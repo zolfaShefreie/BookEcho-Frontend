@@ -23,7 +23,7 @@ class Podcast extends React.Component{
             'description': ""
         }
         this.handleChange = this.handleChange.bind(this);
-        // this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     render() {

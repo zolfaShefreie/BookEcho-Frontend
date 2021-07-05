@@ -13,7 +13,7 @@ class RequestCard extends React.Component{
         this.podcastActiveURL = "http://127.0.0.1:8000/podcast-management/request/"
         this.handleClick = this.handleClick.bind(this);
         this.handleReject = this.handleReject.bind(this);
-        this.handleAccept = this.handleReject.bind(this);
+        this.handleAccept = this.handleAccept.bind(this);
         this.handleAddPodcast = this.handleAddPodcast.bind(this);
         this.handleDeadLineAccept = this.handleDeadLineAccept.bind(this);
         this.handleDeadLineReject = this.handleDeadLineReject.bind(this);
@@ -78,22 +78,21 @@ class RequestCard extends React.Component{
                             <input type="radio" name="options" id="reject" onClick={this.handleReject} autoComplete="off"/> Reject
                         </label>
                         <label className="btn btn-secondary">
-                            <input type="radio" name="options" id="accept" onClick={this.handleAccept} autoComplete="off"/> Accept
+                            <input type="radio" name="options" id="accept" onClick={this.handleAccept} autoComplete="on"/> Accept
                         </label>
                         <label className="btn btn-secondary">
-                            <input type="radio" name="options" id="reject_deadline" onClick={this.handleReject} autoComplete="off"/> Reject DeadLine
+                            <input type="radio" name="options" id="reject_deadline" onClick={this.handleDeadLineReject} autoComplete="on"/> Reject DeadLine
                         </label>
                         <label className="btn btn-secondary">
                             <input type="radio" name="options" id="accept_deadline" onClick={this.handleDeadLineAccept}
-                                   autoComplete="off"/> accept DeadLine
+                                   autoComplete="off"/> Accept DeadLine
                         </label>
                         <label className="btn btn-secondary">
                             <input type="radio" name="options" id="delete" autoComplete="on" onClick={this.handleDelete}
                                    disabled={false}/> Delete
                         </label>
                         <label className="btn btn-secondary">
-                            <input type="radio" name="options" id="add_podcast" autoComplete="off" onClick={this.handleAddPodcast}
-                                   disabled={true}/>
+                            <input type="radio" name="options" id="add_podcast" autoComplete="on" onClick={this.handleAddPodcast}/>
                             Add Change Podcast
                         </label>
                     </div>
@@ -113,10 +112,10 @@ class RequestCard extends React.Component{
     }
 
     async handleDeadLineAccept(event){
-        if (localStorage.getItem('user_type')==='normal' && this.props.item.status==="accept")
+        if (localStorage.getItem('user_type')==='normal' && this.props.item.status==="accepted")
         {
-            const response = await axios.post(`${this.baseURL}${this.props.item.id}/deadline-accept/`,  {},
-                {headers: {Authorization: `JWT ${localStorage.getItem('token')}`}});
+            await axios.post(`${this.baseURL}${this.props.item.id}/deadline-accept/`,  {},
+                {headers: {Authorization: `JWT ${localStorage.getItem('token')}`}}).then();
             window.location.href = '/profile/'
         }
 
@@ -130,9 +129,9 @@ class RequestCard extends React.Component{
     }
 
     async handleDeadLineReject(event){
-        if (localStorage.getItem('user_type')==='normal' && this.props.item.status==="accept")
+        if (localStorage.getItem('user_type')==='normal' && this.props.item.status==="accepted")
         {
-            const response = await axios.post(`${this.baseURL}${this.props.item.id}/deadline-reject/`,  {},
+            await axios.post(`${this.baseURL}${this.props.item.id}/deadline-reject/`,  {},
                 {headers: {Authorization: `JWT ${localStorage.getItem('token')}`}});
             window.location.href = '/profile/'
         }
@@ -148,7 +147,7 @@ class RequestCard extends React.Component{
 
     async handleDelete(event){
         if (localStorage.getItem('user_type')==='normal' && this.props.item.status==="pending") {
-            const response = await axios.delete(`${this.baseURL}${this.props.item.id}/`,
+            await axios.delete(`${this.baseURL}${this.props.item.id}/`,
                 {headers: {Authorization: `JWT ${localStorage.getItem('token')}`}});
             window.location.href = '/profile/'
         }
@@ -158,8 +157,8 @@ class RequestCard extends React.Component{
         if (localStorage.getItem('user_type')==='podcast_producer' && this.props.item.podcast &&
             !this.props.item.podcast.is_active)
         {
-            const response = await axios.delete(`${this.podcastActiveURL}${this.props.item.id}/podcast/set-active/`,
-                {headers: {Authorization: `JWT ${localStorage.getItem('token')}`}});
+            await axios.post(`${this.podcastActiveURL}${this.props.item.id}/podcast/set-active/`,
+                {}, {headers: {Authorization: `JWT ${localStorage.getItem('token')}`}});
             window.location.href = '/profile/'
         }
     }
