@@ -1,0 +1,111 @@
+
+.nav{
+    margin-right: 2%;
+}
+
+.nav-link{
+    color: antiquewhite;
+    position: relative;
+    padding-right: 5%;
+    margin-right: 3%;
+    font-size: 1em;
+}
+
+.nav-link:hover{
+    color: #eedec9;
+    padding-right: 10%;
+    margin-right: 3%;
+    font-size: 1em;
+}
+
+.dark{
+    background-color: black;
+    color: black;
+}
+
+.navbar-brand{
+    margin-left: 10px;
+    padding-top: 2px;
+    position: relative;
+}
+
+.img-center{
+    margin-left: 40%;
+    margin-right: 40%;
+    /*margin-top: 2%;*/
+    width: 20%;
+    height: 20%;
+    /*margin-right: 25%;*/
+}
+
+.h_header{
+    font-family: 'Redressed', cursive;
+    font-size: 4em;
+}
+
+.text_center{
+    text-align: left;
+    width: 40%;
+    height: 50%;
+    background-color: #000000;
+    color: antiquewhite;
+    padding-top: 10%;
+    padding-bottom: 10%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.row{
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+p{
+    font-family: 'Akaya Telivigala', cursive;
+    font-size: 1.5em
+}
+
+.center{
+    background-color: #000000;
+    /*background-image: linear-gradient(to bottom, #282c34 30%, #000000 0%);*/
+    height: 30%;
+    text-align: center;
+    color: antiquewhite;
+    padding-bottom: 5%;
+}
+
+body{
+    background-color: #000000;
+}
+
+.btn{
+    text-align: center;
+    font-family: 'Akaya Telivigala', cursive;
+    font-size: 1.3em;
+    color: #000000;
+    background-color: #c8ada8;
+    width: 30%;
+}
+
+.btn:hover{
+    text-align: center;
+    font-family: 'Akaya Telivigala', cursive;
+    font-size: 1.3em;
+    color: antiquewhite;
+    background-color: #737373;
+    width: 30%;
+}
+
+::-webkit-scrollbar {
+    width: 15px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: antiquewhite;
+    border-radius: 10px;
+}

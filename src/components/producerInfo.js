@@ -30,7 +30,6 @@ class Info extends React.Component{
         const response = await axios.get(`${this.getURL}`, {
             headers: {Authorization: `JWT ${localStorage.getItem('token')}`}});
         await this.setState(response.data)
-        console.log(this.state)
     }
 
     render() {

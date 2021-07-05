@@ -9,6 +9,7 @@ import Profile from "./profile";
 import Podcast from "./addPodcast";
 import SetDeadline from "./setDeadline";
 import UpdateProfile from "./updateProfile";
+import Home from "./home"
 
 
 export default function Routes() {
@@ -24,6 +25,7 @@ export default function Routes() {
             <Route exact path="/add-change-podcast/" render={() => <Podcast/>}/>
             <Route exact path="/set-deadline/" render={() => <SetDeadline/>}/>
             <Route exact path="/profile/update/" render={() => <UpdateProfile/>}/>
+            <Route exact path="/" render={() => <Home/>}/>
         </Switch>
     );
 }
