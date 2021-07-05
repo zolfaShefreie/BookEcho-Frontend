@@ -2,12 +2,14 @@ import React from 'react';
 import axios from "axios";
 import {connect} from "react-redux";
 import {Link, Redirect} from "react-router-dom";
+import ReactAudioPlayer from 'react-audio-player';
 
 
 class Info extends React.Component{
     constructor(props){
         super(props)
         this.URL = 'http://127.0.0.1:8000/account/info/';
+        this.getURL = 'http://127.0.0.1:8000/account/info/retreive/'
         this.input_style = {
             backgroundColor: '#3b3636',
             color: 'antiquewhite'
@@ -22,7 +24,13 @@ class Info extends React.Component{
             'voice_sample': null,
         }
         this.handleChange = this.handleChange.bind(this);
-        // this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+    async componentDidMount(){
+        const response = await axios.get(`${this.getURL}`, {
+            headers: {Authorization: `JWT ${localStorage.getItem('token')}`}});
+        await this.setState(response.data)
+        console.log(this.state)
     }
 
     render() {
@@ -41,6 +49,15 @@ class Info extends React.Component{
                     </div>
                 }
                 <form className="form container" style={{width: '98%'}}>
+                    {
+                        this.state.voice_sample &&
+                            <ReactAudioPlayer
+                                   src={this.state.voice_sample}
+                                    controls
+                                    className="mt-4"
+                                    style={{width:'80%'}}
+                            />
+                    }
                     <div className="form-group mt-4">
                         <input type="file" className="form-control-file" id="voice_sample" style={this.input_style}
                                onChange={this.handleChange}/>
