@@ -83,10 +83,12 @@ class Info extends React.Component{
     async handleSubmit(event){
         event.preventDefault();
         await this.setState({errors: {}})
-        await axios.post(`${this.URL}`, {
-            voice_sample: this.state.voice_sample
-        }, {headers: {Authorization: `JWT ${localStorage.getItem('token')}`}}).then((response) => {
+        const formData = new FormData();
+        formData.append("voice_sample", this.state.voice_sample);
+
+        await axios.post(`${this.URL}`, formData, {headers: {Authorization: `JWT ${localStorage.getItem('token')}`}}).then((response) => {
             console.log(response.data);
+            window.location.href = "/producer/info"
         }, (error) => {
             console.log('error', Object.assign({}, error.response.data));
             this.setState({errors: error.response.data})

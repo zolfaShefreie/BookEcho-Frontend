@@ -60,8 +60,7 @@
     padding-bottom: 2%;
 }
 
-p{
-    font-family: 'Akaya Telivigala', cursive;
+.p_home{
     font-size: 1.5em
 }
 
@@ -78,7 +77,7 @@ body{
     background-color: #000000;
 }
 
-.btn{
+.btn_home{
     text-align: center;
     font-family: 'Akaya Telivigala', cursive;
     font-size: 1.3em;
@@ -87,7 +86,7 @@ body{
     width: 30%;
 }
 
-.btn:hover{
+.btn_home:hover{
     text-align: center;
     font-family: 'Akaya Telivigala', cursive;
     font-size: 1.3em;

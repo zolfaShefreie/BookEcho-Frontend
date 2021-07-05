@@ -150,6 +150,10 @@ class SignUp extends React.Component{
             localStorage.setItem('user_id', response.data.id);
             localStorage.setItem('token', response.data.token);
             console.log(response.data);
+            if (response.data.user_type === "podcast_producer" && !response.data.info){
+                window.location.href = "/producer/info/"
+            }
+            window.location.href = "/profile/"
             this.props.Login()
         }, (error) => {
             console.log('error', Object.assign({}, error.response.data));

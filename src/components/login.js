@@ -78,6 +78,15 @@ class Login extends React.Component{
         }).then((response) => {
             localStorage.setItem('user_id', response.data.user['pk']);
             localStorage.setItem('token', response.data.token);
+            axios.get("http://127.0.0.1:8000/account/info/retreive/", {
+            headers: {Authorization: `JWT ${localStorage.getItem('token')}`}}).then((response)=>{
+                if (!response.data.voice_sample){
+                    window.location.href = "/producer/info/"
+                }
+                window.location.href = "/profile/"
+            }, (error) =>{
+                window.location.href = "/profile/"
+            });
             console.log(response.data);
             this.props.Login()
         }, (error) => {
