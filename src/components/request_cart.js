@@ -10,6 +10,7 @@ class RequestCart extends React.Component{
     constructor(props){
         super(props)
         this.baseURL = "http://127.0.0.1:8000/request_management/request/"
+        this.podcastActiveURL = "http://127.0.0.1:8000/podcast-management/request/"
         this.handleClick = this.handleClick.bind(this);
         this.handleReject = this.handleReject.bind(this);
         this.handleAccept = this.handleReject.bind(this);
@@ -17,6 +18,7 @@ class RequestCart extends React.Component{
         this.handleDeadLineAccept = this.handleDeadLineAccept.bind(this);
         this.handleDeadLineReject = this.handleDeadLineReject.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
+        this.handleActive = this.handleActive.bind(this);
     }
 
     render() {
@@ -47,7 +49,27 @@ class RequestCart extends React.Component{
                     {
                         this.props.item.podcast &&
                         <div>
-                            <button className="btn btn-outline-light " id="podcast" onClick={this.handleClick}>Get Podcast</button>
+                            <h4 className="card-text">Podcast:</h4>
+                            {
+                            this.props.item.podcast.description &&
+                            <div>
+                                <h5 className="card-text">Description:</h5>
+                                <p>{this.props.item.podcast.description}</p>
+                            </div>
+                            }
+                            <div className="btn-group btn-group-toggle" data-toggle="buttons">
+                                <label className="btn btn-secondary">
+                            <input type="radio" name="options" id="podcast" onClick={this.handleClick} autoComplete="off"/>Get Podcast
+                            </label>
+
+                            {
+                                (localStorage.getItem("user_type")==="podcast_producer" &&
+                                    !this.props.item.podcast.is_active) &&
+                                    <label className="btn btn-secondary">
+                                    <input type="radio" name="options" id="active" onClick={this.handleActive} autoComplete="off"/>Set Active
+                                     </label>
+                            }
+                            </div>
                         </div>
                     }
                     <p/>
@@ -72,7 +94,7 @@ class RequestCart extends React.Component{
                         <label className="btn btn-secondary">
                             <input type="radio" name="options" id="add_podcast" autoComplete="off" onClick={this.handleAddPodcast}
                                    disabled={true}/>
-                            Add Podcast
+                            Add Change Podcast
                         </label>
                     </div>
                 </div>
@@ -117,8 +139,9 @@ class RequestCart extends React.Component{
 
     handleAddPodcast(event){
         if (localStorage.getItem('user_type')==='podcast_producer' && this.props.item.status==="active" &&
-            !this.props.item.podcast){
-
+            (!this.props.item.podcast || !this.props.item.podcast.is_active)){
+            localStorage.setItem('req_id', this.props.item.id);
+            window.location.href = '/add-change-podcast/';
         }
     }
 
@@ -126,6 +149,16 @@ class RequestCart extends React.Component{
         if (localStorage.getItem('user_type')==='normal' && this.props.item.status==="pending")
         {
             const response = await axios.delete(`${this.baseURL}${this.props.item.id}/`,
+                {headers: {Authorization: `JWT ${localStorage.getItem('token')}`}});
+            window.location.href = '/profile/'
+        }
+    }
+
+    async handleActive(event){
+        if (localStorage.getItem('user_type')==='podcast_producer' && this.props.item.podcast &&
+            !this.props.item.podcast.is_active)
+        {
+            const response = await axios.delete(`${this.podcastActiveURL}${this.props.item.id}/podcast/set-active/`,
                 {headers: {Authorization: `JWT ${localStorage.getItem('token')}`}});
             window.location.href = '/profile/'
         }

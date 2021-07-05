@@ -6,6 +6,7 @@ import Info from "./producerInfo";
 import Producer from "./producerList";
 import RequestCreate from "./request_create";
 import Profile from "./profile";
+import Podcast from "./addPodcast";
 
 
 export default function Routes() {
@@ -18,6 +19,7 @@ export default function Routes() {
             <Route exact path="/producers" render={() => <Producer/>}/>
             <Route exact path="/apply-request/" render={() => <RequestCreate/>}/>
             <Route exact path="/profile/" render={() => <Profile/>}/>
+            <Route exact path="/add-change-podcast/" render={() => <Podcast/>}/>
         </Switch>
     );
 }

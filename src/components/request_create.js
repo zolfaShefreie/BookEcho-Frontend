@@ -34,6 +34,10 @@ class RequestCreate extends React.Component{
                     !this.props.is_login &&
                     <Redirect to='/login/'> </Redirect>
                 }
+                {
+                    !localStorage.getItem("producer_id") &&
+                    <Redirect to='/producers/'> </Redirect>
+                }
                 <h3 style={{color: '#3b3636'}}>Create A Request For Produce Podcast</h3>
                 {
                     'non_field_errors' in this.state.errors &&
